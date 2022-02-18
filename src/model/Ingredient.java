@@ -1,5 +1,5 @@
 package model;
-
+import exceptions.NegativeWeightException;
 public class Ingredient {
 	private String name;
 	private double weight;
@@ -17,8 +17,19 @@ public class Ingredient {
 		return weight;
 	}
 	
-	public void addWeight(double additionalW) {
-		weight = weight + additionalW;
+	public void addWeight(double additionalW) throws NegativeWeightException {
+		if(additionalW<0) {
+			throw new NegativeWeightException(name, additionalW);
+		}else {
+			weight = weight + additionalW;
+		}
 	}
 	
+	public void removeWeight(double additionalW) throws NegativeWeightException{
+		if(additionalW<0) {
+			throw new NegativeWeightException(name, additionalW);
+		}else {
+			weight = weight - additionalW;
+		}
+	}
 }
